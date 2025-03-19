@@ -75,10 +75,11 @@ static int	add_to_list(char *arg, t_list **stack)
 	size_t	index;
 	t_list	*next;
 
-	while (*arg)
+	while (arg && *arg)
 	{
 		number = ft_strtol(&arg);
-		if (!is_unique(*stack, number) || !is_within_int(number, arg))
+		if (!is_unique(*stack, number)
+			|| (*arg && !is_within_int(number, arg)))
 			return (FAILURE);
 		index = get_index(*stack, number);
 		next = create_node(number, index);

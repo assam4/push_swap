@@ -62,12 +62,15 @@ int	is_valid_args(int count, char **argv)
 int	is_within_int(long number, char *arg)
 {
 	char	*str_nb;
+	int	status;
 
 	if (INT_MIN > number || number > INT_MAX)
 		return (FAILURE);
 	str_nb = ft_itoa((int)number);
-	return (ft_strncmp(str_nb, arg - ft_strlen(str_nb),
+	status = (ft_strncmp(str_nb, arg - ft_strlen(str_nb),
 			ft_strlen(str_nb)) == FAILURE);
+	free(str_nb);
+	return (status);
 }
 
 int	is_unique(t_list *lst, long num)
