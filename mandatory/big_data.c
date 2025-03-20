@@ -65,11 +65,11 @@ static void	reverse_push(t_list **a, t_list **b, size_t max_index)
 		path = go_to_max(*b, max_index);
 		if (path)
 			while (index_cmp((*b)->content, max_index) != EQUAL)
-				operation_rotate("rb\n", b, NULL);
+				operation_rotate(RB, b, NULL);
 		else
 			while (index_cmp((*b)->content, max_index) != EQUAL)
-				operation_rrotate("rrb\n", b, NULL);
-		operation_push("pa\n", b, a);
+				operation_rrotate(RRB, b, NULL);
+		operation_push(PA, b, a);
 		--max_index;
 	}
 }
@@ -87,13 +87,13 @@ void	butterfly_sort(t_list **a, t_list **b)
 	{
 		if (index_cmp((*a)->content, counter + coefficient) <= EQUAL)
 		{
-			operation_push("pb\n", a, b);
+			operation_push(PB, a, b);
 			if (index_cmp((*b)->content, counter) <= EQUAL)
-				operation_rotate("rb\n", b, NULL);
+				operation_rotate(RB, b, NULL);
 			++counter;
 		}
 		else
-			operation_rotate("ra\n", a, NULL);
+			operation_rotate(RA, a, NULL);
 	}
 	reverse_push(a, b, nums_count - 1);
 }

@@ -14,37 +14,37 @@
 
 static int	key3_action(const char *key, t_list **a, t_list **b)
 {
-	if (ft_strncmp(key, "sa\n", 4) == 0 && *a)
+	if (ft_strncmp(key, SA, 4) == EQUAL && *a)
 		operation_swap("", *a, NULL);
-	else if (ft_strncmp(key, "sb\n", 4) == 0 && *b)
+	else if (ft_strncmp(key, SB, 4) == EQUAL && *b)
 		operation_swap("", *b, NULL);
-	else if (ft_strncmp(key, "ss\n", 4) == 0 && *b && *a)
+	else if (ft_strncmp(key, SS, 4) == EQUAL && *b && *a)
 		operation_swap("", *a, *b);
-	else if (ft_strncmp(key, "pa\n", 4) == 0 && *b)
+	else if (ft_strncmp(key, PA, 4) == EQUAL && *b)
 		operation_push("", b, a);
-	else if (ft_strncmp(key, "pb\n", 4) == 0 && *a)
+	else if (ft_strncmp(key, PB, 4) == EQUAL && *a)
 		operation_push("", a, b);
-	else if (ft_strncmp(key, "ra\n", 4) == 0 && *a)
+	else if (ft_strncmp(key, RA, 4) == EQUAL && *a)
 		operation_rotate("", a, NULL);
-	else if (ft_strncmp(key, "rb\n", 4) == 0 && *b)
+	else if (ft_strncmp(key, RB, 4) == EQUAL && *b)
 		operation_rotate("", b, NULL);
-	else if (ft_strncmp(key, "rr\n", 4) == 0 && *a && *b)
+	else if (ft_strncmp(key, RR, 4) == EQUAL && *a && *b)
 		operation_rotate("", a, b);
 	else
-		return (-1);
+		return (ERR_BIT);
 	return (SUCCESS);
 }
 
 static int	key4_action(const char *key, t_list **a, t_list **b)
 {
-	if (ft_strncmp(key, "rra\n", 5) == 0 && *a)
+	if (ft_strncmp(key, RRA, 5) == EQUAL && *a)
 		operation_rrotate("", a, NULL);
-	else if (ft_strncmp(key, "rrb\n", 5) == 0 && *b)
+	else if (ft_strncmp(key, RRB, 5) == EQUAL && *b)
 		operation_rrotate("", b, NULL);
-	else if (ft_strncmp(key, "rrr\n", 5) == 0 && *a && *b)
+	else if (ft_strncmp(key, RRR, 5) == EQUAL && *a && *b)
 		operation_rrotate("", a, b);
 	else
-		return (-1);
+		return (ERR_BIT);
 	return (SUCCESS);
 }
 
@@ -62,29 +62,29 @@ static int	is_sorted(t_list *a)
 
 static int	checker(t_list **a, t_list **b)
 {
-	char	key[5];
+	char	key[6];
 	int		readed;
 	int		is_operation;
 
-	while (1)
+	while (SUCCESS)
 	{
 		readed = read(0, key, 5);
 		if ((readed == 1 && key[0] == '\n') || !readed)
 			break ;
-		else if (readed < 2)
-			return (-1);
+		else if (readed < 2 || readed > 4)
+			return (ERR_BIT);
 		key[readed] = '\0';
 		if (readed == 3)
 			is_operation = key3_action((const char *)key, a, b);
 		else
 			is_operation = key4_action((const char *)key, a, b);
-		if (is_operation == 0)
-			return (-1);
+		if (is_operation == ERR_BIT)
+			return (ERR_BIT);
 	}
 	if (is_sorted(*a))
-		return (1);
+		return (SUCCESS);
 	else
-		return (0);
+		return (FAILURE);
 }
 
 int	main(int argc, char **argv)
@@ -97,7 +97,7 @@ int	main(int argc, char **argv)
 		return (EXIT_FAILURE);
 	a = NULL;
 	b = NULL;
-	proccess_bit = -1;
+	proccess_bit = ERR_BIT;
 	if (is_valid_args(argc - 1, argv + 1))
 	{
 		a = return_list(argc - 1, argv + 1, content_utilization);

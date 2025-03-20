@@ -37,7 +37,7 @@ static int	is_valid_string(char *string)
 		else if (string[i] == PLUS
 			|| string[i] == MINUS)
 		{
-			if (!i || string[i - 1] == SPACE)
+			if (!i || string[i - ONE] == SPACE)
 				++i;
 			else
 				return (FAILURE);

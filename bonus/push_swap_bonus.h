@@ -15,6 +15,8 @@
 
 # include "operations.h"
 
+# define ERR_BIT 2
+
 void	print_message(int index);
 int		content_cmp(void *first, void *second);
 #endif

@@ -29,7 +29,7 @@ void	operation_swap(char *step, t_list *basic, t_list *additional)
 		additional->content = additional->next->content;
 		additional->next->content = temp;
 	}
-	ft_putstr_fd(step, 1);
+	ft_putstr_fd(step, STDOUT_FILENO);
 }
 
 void	operation_push(char *step, t_list **basic, t_list **additional)
@@ -42,7 +42,7 @@ void	operation_push(char *step, t_list **basic, t_list **additional)
 		*basic = (*basic)->next;
 		temp->next = NULL;
 		ft_lstadd_front(additional, temp);
-		ft_putstr_fd(step, 1);
+		ft_putstr_fd(step, STDOUT_FILENO);
 	}
 }
 
@@ -64,7 +64,7 @@ void	operation_rotate(char *step, t_list **basic, t_list **additional)
 		temp->next = NULL;
 		ft_lstadd_back(additional, temp);
 	}
-	ft_putstr_fd(step, 1);
+	ft_putstr_fd(step, STDOUT_FILENO);
 }
 
 static t_list	*throw_last(t_list **list)
@@ -96,5 +96,5 @@ void	operation_rrotate(char *step, t_list **basic, t_list **additional)
 		temp = throw_last(additional);
 		ft_lstadd_front(additional, temp);
 	}
-	ft_putstr_fd(step, 1);
+	ft_putstr_fd(step, STDOUT_FILENO);
 }

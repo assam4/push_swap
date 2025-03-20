@@ -12,11 +12,6 @@
 
 #include "push_swap.h"
 
-static inline void	print_error(int fd)
-{
-	ft_putstr_fd("Error\n", fd);
-}
-
 int	main(int argc, char **argv)
 {
 	t_list	*a;
@@ -39,6 +34,6 @@ int	main(int argc, char **argv)
 			return (EXIT_SUCCESS);
 		}
 	}
-	print_error(2);
+	ft_putstr_fd("Error\n", STDERR_FILENO);
 	return (EXIT_FAILURE);
 }

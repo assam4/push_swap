@@ -30,7 +30,7 @@ static size_t	get_index(t_list *a, int num)
 			++(data->index);
 		}
 		else if (data->index >= index)
-			index = data->index + 1;
+			index = data->index + ONE;
 		a = a->next;
 	}
 	return (index);

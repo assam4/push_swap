@@ -16,6 +16,8 @@
 # include "libft.h"
 # include <limits.h>
 
+# define ONE 1
+
 # define SUCCESS 1
 # define FAILURE 0
 # define LOOP_START -1
@@ -24,6 +26,7 @@
 # define SPACE ' '
 # define PLUS '+'
 # define MINUS '-'
+# define EQUAL 0
 
 typedef struct s_data
 {

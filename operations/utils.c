@@ -73,14 +73,14 @@ void	go_to_min(t_list **a, size_t min)
 {
 	size_t	path;
 
-	path = path_between(*a, min, 1);
+	path = path_between(*a, min, ONE);
 	while (index_cmp((*a)->content, min) != EQUAL)
 	{
 		if (path)
 		{
-			operation_rotate("ra\n", a, NULL);
+			operation_rotate(RA, a, NULL);
 		}
 		else
-			operation_rrotate("rra\n", a, NULL);
+			operation_rrotate(RRA, a, NULL);
 	}
 }

@@ -14,12 +14,12 @@
 
 void	print_message(int index)
 {
-	if (index == 1)
-		ft_putstr_fd("OK\n", 1);
-	else if (index == 0)
-		ft_putstr_fd("KO\n", 1);
-	else
-		ft_putstr_fd("Error\n", 2);
+	if (index == SUCCESS)
+		ft_putstr_fd("OK\n", STDOUT_FILENO);
+	else if (index == FAILURE)
+		ft_putstr_fd("KO\n", STDOUT_FILENO);
+	else if (index == ERR_BIT)
+		ft_putstr_fd("Error\n", STDERR_FILENO);
 }
 
 int	content_cmp(void *first, void *second)

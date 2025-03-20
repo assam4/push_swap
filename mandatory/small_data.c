@@ -33,9 +33,9 @@ void	go_between(t_list **a, t_list *b)
 			&& index_cmp(ft_lstlast(*a)->content, index) < EQUAL)
 			break ;
 		if (path_between(*a, index, START))
-			operation_rotate("ra\n", a, NULL);
+			operation_rotate(RA, a, NULL);
 		else
-			operation_rrotate("rra\n", a, NULL);
+			operation_rrotate(RRA, a, NULL);
 	}
 }
 
@@ -44,7 +44,7 @@ static void	three_number_sort(t_list **a)
 	int	is_true;
 
 	is_true = SUCCESS;
-	while (is_true && ft_lstsize(*a) > 1)
+	while (is_true && ft_lstsize(*a) > ONE)
 	{
 		is_true = FAILURE;
 		if (content_cmp((*a)->content, ft_lstlast(*a)->content) > EQUAL)
@@ -52,9 +52,9 @@ static void	three_number_sort(t_list **a)
 			is_true = SUCCESS;
 			if ((ft_lstsize(*a) == 3)
 				&& content_cmp((*a)->content, (*a)->next->content) < EQUAL)
-				operation_rrotate("rra\n", a, NULL);
+				operation_rrotate(RRA, a, NULL);
 			else
-				operation_rotate("ra\n", a, NULL);
+				operation_rotate(RA, a, NULL);
 		}
 		if (ft_lstsize(*a) == 3
 			&& (content_cmp((*a)->content, (*a)->next->content) > EQUAL
@@ -62,7 +62,7 @@ static void	three_number_sort(t_list **a)
 					, (*a)->next->content) < EQUAL))
 		{
 			is_true = SUCCESS;
-			operation_swap("sa\n", *a, NULL);
+			operation_swap(SA, *a, NULL);
 		}
 	}
 }
@@ -70,7 +70,7 @@ static void	three_number_sort(t_list **a)
 void	small_data_sort(t_list **a, t_list **b)
 {
 	while (ft_lstsize(*a) > 3)
-		operation_push("pb\n", a, b);
+		operation_push(PB, a, b);
 	three_number_sort (a);
 	while (*b)
 	{
@@ -81,7 +81,7 @@ void	small_data_sort(t_list **a, t_list **b)
 		{
 			go_between(a, *b);
 		}
-		operation_push("pa\n", b, a);
+		operation_push(PA, b, a);
 	}
 	if (ft_lstsize(*a) > 3)
 		go_to_min(a, START);
