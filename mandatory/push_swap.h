@@ -15,6 +15,9 @@
 
 # include "operations.h"
 
+# define EX_SMALL 3
+# define SORT_DIVIDER 12
+
 // small_data_sort
 void	small_data_sort(t_list **a, t_list **b);
 void	go_between(t_list **a, t_list *b);

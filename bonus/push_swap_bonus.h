@@ -16,6 +16,10 @@
 # include "operations.h"
 
 # define ERR_BIT 2
+# define ARR_SIZE 6
+# define KEY_1 3
+# define KEY_2 4
+# define NO_INPUT ""
 
 void	print_message(int index);
 int		content_cmp(void *first, void *second);

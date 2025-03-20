@@ -17,13 +17,13 @@ void	operation_swap(char *step, t_list *basic, t_list *additional)
 	void	*temp;
 
 	temp = NULL;
-	if (basic && basic->next)
+	if (basic && ft_lstsize(basic) >= V_SIZE)
 	{
 		temp = basic->content;
 		basic->content = basic->next->content;
 		basic->next->content = temp;
 	}
-	if (additional && additional->next)
+	if (additional && ft_lstsize(additional) >= V_SIZE)
 	{
 		temp = additional->content;
 		additional->content = additional->next->content;
@@ -50,14 +50,14 @@ void	operation_rotate(char *step, t_list **basic, t_list **additional)
 {
 	t_list	*temp;
 
-	if (ft_lstsize(*basic) >= 2)
+	if (ft_lstsize(*basic) >= V_SIZE)
 	{
 		temp = *basic;
 		*basic = (*basic)->next;
 		temp->next = NULL;
 		ft_lstadd_back(basic, temp);
 	}
-	if (additional && ft_lstsize(*additional))
+	if (additional && ft_lstsize(*additional) >= V_SIZE)
 	{
 		temp = *additional;
 		*additional = (*additional)->next;
@@ -86,12 +86,12 @@ void	operation_rrotate(char *step, t_list **basic, t_list **additional)
 {
 	t_list	*temp;
 
-	if (ft_lstsize(*basic) >= 2)
+	if (ft_lstsize(*basic) >= V_SIZE)
 	{
 		temp = throw_last(basic);
 		ft_lstadd_front(basic, temp);
 	}
-	if (additional && ft_lstsize(*additional) >= 2)
+	if (additional && ft_lstsize(*additional) >= V_SIZE)
 	{
 		temp = throw_last(additional);
 		ft_lstadd_front(additional, temp);

@@ -53,7 +53,7 @@ static size_t	go_to_max(t_list *iter, size_t max)
 		iter = iter->next;
 		++steps;
 	}
-	return (steps <= (max + 1) / 2);
+	return (steps <= (max + ONE) / TWO);
 }
 
 static void	reverse_push(t_list **a, t_list **b, size_t max_index)
@@ -81,7 +81,7 @@ void	butterfly_sort(t_list **a, t_list **b)
 	size_t	nums_count;
 
 	nums_count = ft_lstsize(*a);
-	coefficient = ft_sqrt(nums_count) + ft_log(2, nums_count) - 1;
+	coefficient = ft_sqrt(nums_count) + ft_log(TWO, nums_count) - ONE;
 	counter = START;
 	while (*a)
 	{
@@ -95,5 +95,5 @@ void	butterfly_sort(t_list **a, t_list **b)
 		else
 			operation_rotate(RA, a, NULL);
 	}
-	reverse_push(a, b, nums_count - 1);
+	reverse_push(a, b, nums_count - ONE);
 }

@@ -14,22 +14,22 @@
 
 static int	key3_action(const char *key, t_list **a, t_list **b)
 {
-	if (ft_strncmp(key, SA, 4) == EQUAL && *a)
-		operation_swap("", *a, NULL);
-	else if (ft_strncmp(key, SB, 4) == EQUAL && *b)
-		operation_swap("", *b, NULL);
-	else if (ft_strncmp(key, SS, 4) == EQUAL && *b && *a)
-		operation_swap("", *a, *b);
-	else if (ft_strncmp(key, PA, 4) == EQUAL && *b)
-		operation_push("", b, a);
-	else if (ft_strncmp(key, PB, 4) == EQUAL && *a)
-		operation_push("", a, b);
-	else if (ft_strncmp(key, RA, 4) == EQUAL && *a)
-		operation_rotate("", a, NULL);
-	else if (ft_strncmp(key, RB, 4) == EQUAL && *b)
-		operation_rotate("", b, NULL);
-	else if (ft_strncmp(key, RR, 4) == EQUAL && *a && *b)
-		operation_rotate("", a, b);
+	if (ft_strncmp(key, SA, KEY_1) == EQUAL && *a)
+		operation_swap(NO_INPUT, *a, NULL);
+	else if (ft_strncmp(key, SB, KEY_1) == EQUAL && *b)
+		operation_swap(NO_INPUT, *b, NULL);
+	else if (ft_strncmp(key, SS, KEY_1) == EQUAL && *b && *a)
+		operation_swap(NO_INPUT, *a, *b);
+	else if (ft_strncmp(key, PA, KEY_1) == EQUAL && *b)
+		operation_push(NO_INPUT, b, a);
+	else if (ft_strncmp(key, PB, KEY_1) == EQUAL && *a)
+		operation_push(NO_INPUT, a, b);
+	else if (ft_strncmp(key, RA, KEY_1) == EQUAL && *a)
+		operation_rotate(NO_INPUT, a, NULL);
+	else if (ft_strncmp(key, RB, KEY_1) == EQUAL && *b)
+		operation_rotate(NO_INPUT, b, NULL);
+	else if (ft_strncmp(key, RR, KEY_1) == EQUAL && *a && *b)
+		operation_rotate(NO_INPUT, a, b);
 	else
 		return (ERR_BIT);
 	return (SUCCESS);
@@ -37,12 +37,12 @@ static int	key3_action(const char *key, t_list **a, t_list **b)
 
 static int	key4_action(const char *key, t_list **a, t_list **b)
 {
-	if (ft_strncmp(key, RRA, 5) == EQUAL && *a)
-		operation_rrotate("", a, NULL);
-	else if (ft_strncmp(key, RRB, 5) == EQUAL && *b)
-		operation_rrotate("", b, NULL);
-	else if (ft_strncmp(key, RRR, 5) == EQUAL && *a && *b)
-		operation_rrotate("", a, b);
+	if (ft_strncmp(key, RRA, KEY_2) == EQUAL && *a)
+		operation_rrotate(NO_INPUT, a, NULL);
+	else if (ft_strncmp(key, RRB, KEY_2) == EQUAL && *b)
+		operation_rrotate(NO_INPUT, b, NULL);
+	else if (ft_strncmp(key, RRR, KEY_2) == EQUAL && *a && *b)
+		operation_rrotate(NO_INPUT, a, b);
 	else
 		return (ERR_BIT);
 	return (SUCCESS);
@@ -62,19 +62,19 @@ static int	is_sorted(t_list *a)
 
 static int	checker(t_list **a, t_list **b)
 {
-	char	key[6];
+	char	key[ARR_SIZE];
 	int		readed;
 	int		is_operation;
 
 	while (SUCCESS)
 	{
-		readed = read(0, key, 5);
-		if ((readed == 1 && key[0] == '\n') || !readed)
+		readed = read(STDIN_FILENO, key, KEY_2 + ONE);
+		if ((readed == ONE && key[START] == '\n') || !readed)
 			break ;
-		else if (readed < 2 || readed > 4)
+		else if (readed < KEY_1 || readed > KEY_2)
 			return (ERR_BIT);
 		key[readed] = '\0';
-		if (readed == 3)
+		if (readed == KEY_1)
 			is_operation = key3_action((const char *)key, a, b);
 		else
 			is_operation = key4_action((const char *)key, a, b);
@@ -93,14 +93,14 @@ int	main(int argc, char **argv)
 	t_list	*b;
 	int		proccess_bit;
 
-	if (argc == 1)
+	if (argc == ONE)
 		return (EXIT_FAILURE);
 	a = NULL;
 	b = NULL;
 	proccess_bit = ERR_BIT;
-	if (is_valid_args(argc - 1, argv + 1))
+	if (is_valid_args(argc - ONE, argv + ONE))
 	{
-		a = return_list(argc - 1, argv + 1, content_utilization);
+		a = return_list(argc - ONE, argv + ONE, content_utilization);
 		if (a)
 		{
 			proccess_bit = checker(&a, &b);

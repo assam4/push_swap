@@ -17,16 +17,16 @@ int	main(int argc, char **argv)
 	t_list	*a;
 	t_list	*b;
 
-	if (argc == 1)
+	if (argc == ONE)
 		return (EXIT_FAILURE);
 	a = NULL;
 	b = NULL;
-	if (is_valid_args(argc - 1, argv + 1))
+	if (is_valid_args(argc - ONE, argv + ONE))
 	{
-		a = return_list(argc - 1, argv + 1, content_utilization);
+		a = return_list(argc - ONE, argv + ONE, content_utilization);
 		if (a && a->content)
 		{
-			if (ft_lstsize(a) <= 12)
+			if (ft_lstsize(a) <= SORT_DIVIDER)
 				small_data_sort(&a, &b);
 			else
 				butterfly_sort(&a, &b);

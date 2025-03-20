@@ -55,7 +55,7 @@ size_t	path_between(t_list *a, size_t index, size_t min)
 	size_t	half;
 
 	steps = START;
-	half = ft_lstsize(a) / 2;
+	half = ft_lstsize(a) / TWO;
 	while (a)
 	{
 		if (!min && index_cmp(a->content, index) > EQUAL

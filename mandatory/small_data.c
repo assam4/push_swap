@@ -50,13 +50,13 @@ static void	three_number_sort(t_list **a)
 		if (content_cmp((*a)->content, ft_lstlast(*a)->content) > EQUAL)
 		{
 			is_true = SUCCESS;
-			if ((ft_lstsize(*a) == 3)
+			if ((ft_lstsize(*a) == EX_SMALL)
 				&& content_cmp((*a)->content, (*a)->next->content) < EQUAL)
 				operation_rrotate(RRA, a, NULL);
 			else
 				operation_rotate(RA, a, NULL);
 		}
-		if (ft_lstsize(*a) == 3
+		if (ft_lstsize(*a) == EX_SMALL
 			&& (content_cmp((*a)->content, (*a)->next->content) > EQUAL
 				|| content_cmp((*a)->next->next->content
 					, (*a)->next->content) < EQUAL))
@@ -69,7 +69,7 @@ static void	three_number_sort(t_list **a)
 
 void	small_data_sort(t_list **a, t_list **b)
 {
-	while (ft_lstsize(*a) > 3)
+	while (ft_lstsize(*a) > EX_SMALL)
 		operation_push(PB, a, b);
 	three_number_sort (a);
 	while (*b)
@@ -83,6 +83,6 @@ void	small_data_sort(t_list **a, t_list **b)
 		}
 		operation_push(PA, b, a);
 	}
-	if (ft_lstsize(*a) > 3)
+	if (ft_lstsize(*a) > EX_SMALL)
 		go_to_min(a, START);
 }

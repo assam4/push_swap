@@ -26,7 +26,8 @@
 # define RRA "rra\n"
 # define RRB "rrb\n"
 # define RRR "rrr\n"
-
+# define V_SIZE 2
+# define TWO 2
 # define MAX "max"
 # define MIN "min"
 
