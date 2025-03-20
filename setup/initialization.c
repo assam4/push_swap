@@ -12,27 +12,6 @@
 
 #include "setup.h"
 
-static long	ft_strtol(char **str)
-{
-	long	result;
-	int		sign;
-
-	sign = 1;
-	result = START;
-	while (**str && ft_isspace(**str))
-		++(*str);
-	if (**str == MINUS)
-		sign = -1;
-	if (**str == PLUS || **str == MINUS)
-		++(*str);
-	while (**str && ft_isdigit(**str))
-	{
-		result = result * 10 + (**str - '0');
-		++(*str);
-	}
-	return (sign * result);
-}
-
 static size_t	get_index(t_list *a, int num)
 {
 	size_t	index;
@@ -71,16 +50,20 @@ static t_list	*create_node(long number, size_t index)
 
 static int	add_to_list(char *arg, t_list **stack)
 {
-	long	number;
+	int		number;
 	size_t	index;
 	t_list	*next;
 
-	while (arg && *arg)
+	if (!arg || !*arg)
+		return (FAILURE);
+	while (*arg)
 	{
-		number = ft_strtol(&arg);
+		number = ft_atoi(arg);
 		if (!is_unique(*stack, number)
-			|| (*arg && !is_within_int(number, arg)))
+			|| !is_within_int(number, &arg))
 			return (FAILURE);
+		while (*arg && ft_isspace(*arg))
+			++(arg);
 		index = get_index(*stack, number);
 		next = create_node(number, index);
 		if (!next)

@@ -33,7 +33,7 @@ typedef struct s_data
 
 int		ft_isspace(int letter);
 int		is_valid_args(int count, char **argv);
-int		is_within_int(long number, char *arg);
+int		is_within_int(int number, char **arg);
 int		is_unique(t_list *lst, long num);
 t_list	*return_list(int argc, char **argv, void (*deallocate)(void *));
 

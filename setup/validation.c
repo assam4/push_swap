@@ -59,33 +59,43 @@ int	is_valid_args(int count, char **argv)
 	return (str_bit);
 }
 
-int	is_within_int(long number, char *arg)
+int	is_within_int(int number, char **arg)
 {
-	char	*str_nb;
-	int	status;
+	char	*num_str;
+	int		i;
 
-	if (INT_MIN > number || number > INT_MAX)
-		return (FAILURE);
-	str_nb = ft_itoa((int)number);
-	status = (ft_strncmp(str_nb, arg - ft_strlen(str_nb),
-			ft_strlen(str_nb)) == FAILURE);
-	free(str_nb);
-	return (status);
+	num_str = ft_itoa(number);
+	i = START;
+	if (num_str)
+	{
+		if ((*arg)[i] == MINUS && num_str[i] == MINUS)
+			++i;
+		else if ((*arg)[i] == PLUS)
+			++(*arg);
+		while ((*arg)[i] == '0' && num_str[i] != '0')
+			++(*arg);
+		while (num_str[i] && (*arg)[i])
+		{
+			if ((*arg)[i] != num_str[i])
+				return (free(num_str), FAILURE);
+			++i;
+		}
+		(*arg) += i;
+		return (free(num_str), SUCCESS);
+	}
+	return (FAILURE);
 }
 
 int	is_unique(t_list *lst, long num)
 {
 	t_data	*content;
 
-	if (lst)
+	while (lst)
 	{
-		while (lst)
-		{
-			content = (t_data *)lst->content;
-			if (content->number == (int)num)
-				return (FAILURE);
-			lst = lst->next;
-		}
+		content = (t_data *)lst->content;
+		if (content->number == (int)num)
+			return (FAILURE);
+		lst = lst->next;
 	}
 	return (SUCCESS);
 }
