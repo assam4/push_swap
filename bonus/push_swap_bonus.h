@@ -17,7 +17,6 @@
 # include "get_next_line.h"
 
 # define ERR_BIT 2
-# define ARR_SIZE 6
 # define KEY_1 3
 # define KEY_2 4
 # define NO_INPUT ""

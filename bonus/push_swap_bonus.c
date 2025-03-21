@@ -52,14 +52,14 @@ static int	is_sorted(t_list *a)
 {
 	while (a && a->next)
 	{
-		if (content_cmp(a->next->content, a->content) > EQUAL)
+		if (content_cmp(a->next->content, a->content) >= EQUAL)
 			a = a->next;
 		else
 			return (FAILURE);
 	}
 	return (SUCCESS);
 }
-
+#include <stdio.h>
 static int	checker(t_list **a, t_list **b)
 {
 	char	*operation;
@@ -68,7 +68,7 @@ static int	checker(t_list **a, t_list **b)
 	while (SUCCESS)
 	{
 		operation = get_next_line(STDIN_FILENO);
-		if (!operation || *operation == '\n')
+		if (!operation || operation[0] == '\n')
 			break ;
 		if (ft_strlen(operation) == KEY_1)
 			is_operation = key3_action((const char *)operation, a, b);
@@ -80,7 +80,8 @@ static int	checker(t_list **a, t_list **b)
 		if (!is_operation)
 			return (ERR_BIT);
 	}
-	if (is_sorted(*a) && !(*b))
+	free(operation);
+	if (*a && is_sorted(*a) && !(*b))
 		return (SUCCESS);
 	else
 		return (FAILURE);
