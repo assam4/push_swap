@@ -20,7 +20,8 @@ OBJS = $(SRCS:.c=.o)
 
 B_SRCS = $(SETUP_DIR)validation.c $(SETUP_DIR)initialization.c \
 	 $(OPER_DIR)operations.c $(OPER_DIR)utils.c \
-	 $(BONUS_DIR)push_swap_bonus.c $(BONUS_DIR)utils.c
+	 $(BONUS_DIR)push_swap_bonus.c $(BONUS_DIR)utils.c \
+	 $(BONUS_DIR)get_next_line_utils.c $(BONUS_DIR)get_next_line.c
 B_OBJS = $(B_SRCS:.c=.o)
 
 

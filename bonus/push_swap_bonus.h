@@ -14,6 +14,7 @@
 # define PUSH_SWAP_BONUS_H
 
 # include "operations.h"
+# include "get_next_line.h"
 
 # define ERR_BIT 2
 # define ARR_SIZE 6

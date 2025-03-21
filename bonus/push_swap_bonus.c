@@ -62,23 +62,22 @@ static int	is_sorted(t_list *a)
 
 static int	checker(t_list **a, t_list **b)
 {
-	char	key[ARR_SIZE];
-	int		readed;
+	char	*operation;
 	int		is_operation;
 
 	while (SUCCESS)
 	{
-		readed = read(STDIN_FILENO, key, KEY_2 + ONE);
-		if ((readed == ONE && key[START] == '\n') || !readed)
+		operation =  get_next_line(STDIN_FILENO);
+		if (!operation || *operation == '\n')
 			break ;
-		else if (readed < KEY_1 || readed > KEY_2)
-			return (ERR_BIT);
-		key[readed] = '\0';
-		if (readed == KEY_1)
-			is_operation = key3_action((const char *)key, a, b);
+		if (ft_strlen(operation) == KEY_1)
+			is_operation = key3_action((const char *)operation, a, b);
+		else if (ft_strlen(operation) == KEY_2)
+			is_operation = key4_action((const char *)operation, a, b);
 		else
-			is_operation = key4_action((const char *)key, a, b);
-		if (is_operation == ERR_BIT)
+			return (free(operation), ERR_BIT);
+		free(operation);
+		if (!is_operation)
 			return (ERR_BIT);
 	}
 	if (is_sorted(*a) && !(*b))
