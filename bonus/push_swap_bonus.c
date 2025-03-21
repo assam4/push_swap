@@ -12,7 +12,7 @@
 
 #include "push_swap_bonus.h"
 
-static int	key3_action(const char *key, t_list **a, t_list **b)
+static int	key_action(const char *key, t_list **a, t_list **b)
 {
 	if (ft_strncmp(key, SA, KEY_1) == EQUAL && *a)
 		operation_swap(NO_INPUT, *a, NULL);
@@ -30,13 +30,6 @@ static int	key3_action(const char *key, t_list **a, t_list **b)
 		operation_rotate(NO_INPUT, b, NULL);
 	else if (ft_strncmp(key, RR, KEY_1) == EQUAL && *a && *b)
 		operation_rotate(NO_INPUT, a, b);
-	else
-		return (ERR_BIT);
-	return (SUCCESS);
-}
-
-static int	key4_action(const char *key, t_list **a, t_list **b)
-{
 	if (ft_strncmp(key, RRA, KEY_2) == EQUAL && *a)
 		operation_rrotate(NO_INPUT, a, NULL);
 	else if (ft_strncmp(key, RRB, KEY_2) == EQUAL && *b)
@@ -59,7 +52,7 @@ static int	is_sorted(t_list *a)
 	}
 	return (SUCCESS);
 }
-#include <stdio.h>
+
 static int	checker(t_list **a, t_list **b)
 {
 	char	*operation;
@@ -70,12 +63,7 @@ static int	checker(t_list **a, t_list **b)
 		operation = get_next_line(STDIN_FILENO);
 		if (!operation || operation[0] == '\n')
 			break ;
-		if (ft_strlen(operation) == KEY_1)
-			is_operation = key3_action((const char *)operation, a, b);
-		else if (ft_strlen(operation) == KEY_2)
-			is_operation = key4_action((const char *)operation, a, b);
-		else
-			return (free(operation), ERR_BIT);
+		is_operation = key_action((const char *)operation, a, b);
 		free(operation);
 		if (!is_operation)
 			return (ERR_BIT);
