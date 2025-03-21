@@ -1,5 +1,5 @@
 NAME = push_swap
-BONUS_NAME = checker
+B_NAME = checker
 
 CC = cc
 CFLAGS = -Wall -Wextra -Werror -g -fsanitize=address
@@ -30,7 +30,7 @@ $(NAME): $(LIBFT_DIR)libft.a $(OBJS)
 	$(CC) $(CFLAGS) $(INCLUDES) $(OBJS) $(LIB_FT) -o $(NAME)
 
 bonus:	 $(LIBFT_DIR)libft.a $(B_OBJS)
-	$(CC) $(CFLAGS) $(INCLUDES) $(B_OBJS) $(LIB_FT) -o $(BONUS_NAME)
+	$(CC) $(CFLAGS) $(INCLUDES) $(B_OBJS) $(LIB_FT) -o $(B_NAME)
 
 $(LIBFT_DIR)libft.a:
 	$(MAKE) -C $(LIBFT_DIR) bonus
