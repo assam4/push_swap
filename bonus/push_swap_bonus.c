@@ -81,7 +81,7 @@ static int	checker(t_list **a, t_list **b)
 		if (is_operation == ERR_BIT)
 			return (ERR_BIT);
 	}
-	if (is_sorted(*a))
+	if (is_sorted(*a) && !(*b))
 		return (SUCCESS);
 	else
 		return (FAILURE);
