@@ -27,15 +27,10 @@
 
 # include <unistd.h>
 # include <stdlib.h>
+# include <stdint.h>
 # include <stdio.h>
+# include "libft.h"
 
-# define SIZE_MAX 300
-
-size_t	ft_strlen(const char *str);
-size_t	ft_strlcpy(char *dest, const char *src, size_t n);
-char	*ft_strchr(const char *s, int c);
 char	*get_next_line(int fd);
-void	*ft_memset(void *ptr, int simb, size_t n);
-void	*ft_calloc(size_t num, size_t size);
 
 #endif

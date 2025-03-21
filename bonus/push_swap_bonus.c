@@ -30,7 +30,7 @@ static int	key_action(const char *key, t_list **a, t_list **b)
 		operation_rotate(NO_INPUT, b, NULL);
 	else if (ft_strncmp(key, RR, KEY_1) == EQUAL && *a && *b)
 		operation_rotate(NO_INPUT, a, b);
-	if (ft_strncmp(key, RRA, KEY_2) == EQUAL && *a)
+	else if (ft_strncmp(key, RRA, KEY_2) == EQUAL && *a)
 		operation_rrotate(NO_INPUT, a, NULL);
 	else if (ft_strncmp(key, RRB, KEY_2) == EQUAL && *b)
 		operation_rrotate(NO_INPUT, b, NULL);
