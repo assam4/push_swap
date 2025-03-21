@@ -67,7 +67,7 @@ static int	checker(t_list **a, t_list **b)
 
 	while (SUCCESS)
 	{
-		operation =  get_next_line(STDIN_FILENO);
+		operation = get_next_line(STDIN_FILENO);
 		if (!operation || *operation == '\n')
 			break ;
 		if (ft_strlen(operation) == KEY_1)

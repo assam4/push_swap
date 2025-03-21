@@ -29,7 +29,7 @@
 # include <stdlib.h>
 # include <stdio.h>
 
-#define SIZE_MAX 300
+# define SIZE_MAX 300
 
 size_t	ft_strlen(const char *str);
 size_t	ft_strlcpy(char *dest, const char *src, size_t n);
