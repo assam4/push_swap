@@ -97,7 +97,7 @@ int	main(int argc, char **argv)
 			if (a)
 				ft_lstclear(&a, content_utilization);
 		}
-}
+	}
 	print_message(proccess_bit);
 	return (EXIT_SUCCESS);
 }
