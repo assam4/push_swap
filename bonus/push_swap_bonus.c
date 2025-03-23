@@ -65,7 +65,7 @@ static int	checker(t_list **a, t_list **b)
 			break ;
 		is_operation = key_action((const char *)operation, a, b);
 		free(operation);
-		if (!is_operation)
+		if (is_operation == ERR_BIT)
 			return (ERR_BIT);
 	}
 	free(operation);
@@ -97,7 +97,7 @@ int	main(int argc, char **argv)
 			if (a)
 				ft_lstclear(&a, content_utilization);
 		}
-		print_message(proccess_bit);
-	}
+}
+	print_message(proccess_bit);
 	return (EXIT_SUCCESS);
 }
